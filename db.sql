@@ -3,28 +3,28 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema ##DB_NAME##
+-- Schema test_java
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `##DB_NAME##`;
-CREATE SCHEMA IF NOT EXISTS `##DB_NAME##` DEFAULT CHARACTER SET utf8 ;
-USE `##DB_NAME##` ;
+CREATE SCHEMA IF NOT EXISTS `user01_test_java` DEFAULT CHARACTER SET utf8 ;
+USE `user01_test_java` ;
 
 -- -----------------------------------------------------
--- Table `##DB_NAME##`.`prof`
+-- Table `test_java`.`prof`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `##DB_NAME##`.`prof` (
+CREATE TABLE IF NOT EXISTS `prof` (
   `idprof` INT NOT NULL AUTO_INCREMENT,
-  `nom` VARCHAR(100) NOT NULL,
-  `prenom` VARCHAR(100) NOT NULL,
+  `nomprof` VARCHAR(100) NOT NULL,
+  `prenomprof` VARCHAR(100) NOT NULL,
   `datenaiss` VARCHAR(25) NULL,
   `lieunaiss` VARCHAR(100) NULL,
-  PRIMARY KEY (`idprof`)
-) ENGINE = InnoDB;
+  PRIMARY KEY (`idprof`))
+ENGINE = InnoDB;
+
 
 -- -----------------------------------------------------
--- Table `##DB_NAME##`.`cours`
+-- Table `test_java`.`cours`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `##DB_NAME##`.`cours` (
+CREATE TABLE IF NOT EXISTS `cours` (
   `idcours` INT NOT NULL AUTO_INCREMENT,
   `intitule` VARCHAR(200) NOT NULL,
   `duree` VARCHAR(10) NOT NULL,
@@ -33,10 +33,11 @@ CREATE TABLE IF NOT EXISTS `##DB_NAME##`.`cours` (
   INDEX `fk_cours_prof_idx` (`idprof` ASC),
   CONSTRAINT `fk_cours_prof`
     FOREIGN KEY (`idprof`)
-    REFERENCES `##DB_NAME##`.`prof` (`idprof`)
-    ON DELETE SET NULL
-    ON UPDATE CASCADE
-) ENGINE = InnoDB;
+    REFERENCES `prof` (`idprof`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
